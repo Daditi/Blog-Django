@@ -1,0 +1,85 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'styles.css' %}"></link>
+</head>
+<body>
+  
+<div class='wrapper'>
+ 
+    <li class='nav justify-content-center'><h3><a href='/articles/'>Django</a></h3></li>
+  
+  <ul class="nav justify-content-end">
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+        <form action='/accounts/logout/' method='post'>
+          {% csrf_token %}
+          
+          <button type='submit'>logout</button>
+          </form>
+         
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/articles/create/" class='highlight'>Create Article</a>
+    </li>
+      {% else %}
+     
+     
+      <li class="nav-item">
+          <a class="nav-link" href="/accounts/login/">Login</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link disabled" href="/accounts/signup/">Signup</a>
+      </li>
+      {% endif %}
+  </ul>
+  
+{% block content %}
+
+{% endblock %}
+<div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <script>
+        var textWrapper = document.querySelector('.main-title');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='thin'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.main-title .thin',
+    translateX: [40,0],
+    translateZ: 0,
+    opacity: [0,1],
+    easing: "easeOutExpo",
+    duration: 1800,
+    delay: (el, i) => 500 + 30 * i
+  }).add({
+    targets: '.main-title .thin',
+    translateX: [0,-30],
+    opacity: [1,0],
+    easing: "easeInExpo",
+    duration: 11100,
+    delay: (el, i) => 100 + 30 * i
+  });
+    </script>
+</body>
+</html>

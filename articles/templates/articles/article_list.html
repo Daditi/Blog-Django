@@ -1,0 +1,8 @@
+{% extends 'base_layout.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    {% for i in articles %}
+    <p class='cont'><br/><a href="{{i.slug}}" class='text'><img src="/static/blog.png"/>  {{i.title}} </a><br/><br/>{{i.body}}<br/><br/> {{i.date}}<br/><br/></p><br/>
+  <div class="hh"></div>
+    {% endfor %}
+{% endblock %}
